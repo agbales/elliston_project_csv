@@ -1,6 +1,6 @@
 # elliston_project_csv
 
-Setup
+## Setup
 
 1) Place the new CSV file in the ‘data’ project folder.
 
@@ -9,18 +9,19 @@ Setup
 3) Use MAMP (or local server) to run the Elliston_CSV project.
 
 
-Usage
+## Usage
 
 Once you open the project, you’ll have a few options:
 
-Grab the code for select entries.
+### Grab the code for select entries.
 
 Clicking “Display Listings” will list the code for each listing. This can be cut/pasted into the code body of the WP post.
 
-Retrieve a JavaScript object that contains the entire DB.
+### Retrieve a JavaScript object that contains the entire DB.
 
 In the browser’s console, you may save the first logged variable ’ellistonData’ (see instructions below), as an object. It will have the following structure:
 
+```
 PlaylistID
 	- - > Listing number
 		- - > Authors (array)
@@ -28,29 +29,32 @@ PlaylistID
 		- - > playlistHTML (HTML for WP player)
 		- - > Tracks (Array of objects)  - - > mp3 (link) 
 								   - - > trackNum
+```
 
-Retrieve a JSON object (required to update the WP posts).
+### Retrieve a JSON object (required to update the WP posts).
 
 In the browser’s console, you may save the first logged variable ’ellistonData’ (see instructions below), as an object. It will have the following structure:
 
 In the browser’s console, you may save the second logged variable ‘el’ (see instructions below), which contains information to create new WP posts. It’s an array with objects that follows this structure:
 
+```
 Array
 	- - > Object
 		- - > Author
 		- - > authorInfoPlaceholder
 		- - > drcLink
 		- - > playlist (HTML for WP plugin)
+```
 
-
-Saving variables from the console:
+## Saving variables from the console:
 
 1) Right click the object and save as a global variable.
 2) Paste the following function in the console and press ‘enter’:
 
+```
 (function(console){
 
-console.save = function(data, filename){
+    console.save = function(data, filename){
 
     if(!data) {
         console.error('Console.save: No data')
@@ -74,20 +78,24 @@ console.save = function(data, filename){
     a.dispatchEvent(e)
  }
 })(console)
+```
 
 3) To download, pass the name of the variable (ex: temp1) and the desired file name (ex: ‘elliston_JSON’) as arguments to console.save in the console:
 
 	console.save(temp1, ‘elliston_JSON’)
 
 
-Insert WP posts
+## Insert WP posts
 
 Once you’ve saved the JSON object, you can now update the WP site. Go to the posts section of the dashboard in WP. Then function.php modify the file located at:
 
+```
 	../wp-content/themes/CURRENT-THEME/functions.php
+```
 
 At the bottom of the file, add the code:
 
+```
 if ( true !== DOING_CRON && true !== DOING_AJAX ) { 
 
 	$json = “PASTE (or direct to file for) JSON OBJECT SAVED FROM CONSOLE”;
@@ -111,7 +119,7 @@ if ( true !== DOING_CRON && true !== DOING_AJAX ) {
  		));
  	}
  }
-
+```
 
 Save & refresh the dashboard. **IMPORTANT** It’s possible you’ll get an error message. (“Though the bag may not inflate, oxygen is flowing to the mask”). Regardless, DO NOT refresh again, as EVERY refresh of the page will add the entire array of posts. Before you return to the page, you’ll need to comment out or remove the functions.php insert code we just added, re-save, and then refresh the dashboard. The posts should now be populated!
 
