@@ -4,9 +4,9 @@
 
 1) Place the new CSV file in the ‘data’ project folder.
 
-2) In the Elliston_CSV project, open /js/index.js . Be sure that var csvfile inside the document ready function is pointing towards the current .csv from the database.
+2) Open /js/generate-posts.js . Be sure that var csvfile inside the document ready function is pointing towards the current .csv from the database.
 
-3) Use MAMP (or local server) to run the Elliston_CSV project.
+3) Use MAMP (or local server) to run the elliston_project_csv project.
 
 
 ## Usage
