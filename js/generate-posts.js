@@ -11,7 +11,7 @@ var el = [];
 
 $(document).ready(function(){
 	  // Path of the current CSV
-    var csvfile = "data/elliston-data-date_(no-empty-description-rows).csv";
+    var csvfile = "data/updated-elliston-data.csv";
     $.get(csvfile, function (csv) {
         data = Papa.parse(csv, {
     					header: true,
