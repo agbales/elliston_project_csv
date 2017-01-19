@@ -79,7 +79,7 @@ $('#display-listings').on('click', function(){
 
 	function appendListings(playlistID, listings) {
 
-		var playerStart = ' [_playlist type="audio" tracklist="true" tracknumbers="true" images="true" artist="true"] ';
+		var playerStart = ' [wpse_playlist type="audio" tracklist="true" tracknumbers="true" images="true" artist="true"] ';
 		// var allTracksMP3 = listing.match(/(http:\/\/drc)(.*)(?=<\/a>)/g) // returns an array
 		var allTracksHTML = '';
 
@@ -90,11 +90,18 @@ $('#display-listings').on('click', function(){
 		for (var i = 0; i < ellistonData.playlistID[playlistID].tracks.length; i++) {
 			var trackURL = ellistonData.playlistID[playlistID].tracks[i].mp3
 
-			// Find track name with first capitalized letter
+		  // Find track name with first capitalized letter
 			var t = trackNames[i].search(/[A-Z]/);
-			var trackName = trackNames[i].slice(t);
 
-			var individualTrack = '[_track title="' + trackName + '" src="' + trackURL + '" type="audio/mpeg" caption="" description="" meta_artist="' +
+			// Compensating for first track being overview title
+			c = i + 1;
+			var trackName = trackNames[c].slice(t);
+
+			// Replace apostrophe with ASCII & bracket with parenthese
+			trackName = trackName.replace(/'/g, "&#39").replace(/\[/g, "(").replace(/\]/g, ")");
+			authors = authors.replace(/'/g, "&#39")
+
+			var individualTrack = '[wpse_trac title="' + trackName + '" src="' + trackURL + '" type="audio/mpeg" caption="" description="" meta_artist="' +
 		 							authors + '" meta_length_formatted="" thumb_src="" image_width="300"]';
 	 		allTracksHTML += individualTrack;
 		}
@@ -113,7 +120,7 @@ $('#display-listings').on('click', function(){
 		var playlistHTML = '<h2>' + authors + '</h2>' +
 						playerStart +
 							allTracksHTML +
-						'[/_playlist]';
+						'[/wpse_playlist]';
 
 		$('#output').append('<code>' + playlistHTML +
 									 '<br><br>' +
@@ -145,6 +152,13 @@ $('#display-listings').on('click', function(){
 		appendListings(playlistID, listing);
 	}
 
+	function split_into_sections(arr) {
+		var sections = [], size = 100;
+		while (arr.length) {
+    	sections.push(arr.splice(0, size));
+	  }
+		return sections;
+	}
 	console.log(ellistonData);
-	console.log(el);
+	console.log(split_into_sections(el));
 });
