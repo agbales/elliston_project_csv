@@ -111,14 +111,16 @@ if ( true !== DOING_CRON && true !== DOING_AJAX ) {
 					"Find the DRC listing here: <a href='" . $drcLink . "'> " . $drcLink . "</a>";
 
 	    $id = wp_insert_post(array(
- 		 'post_title'    => $author,
- 		 'post_content'  => $postHTML,
- 		 'post_author'   => 'admin',
- 		 'post_type'     => 'post',
- 		 'post_status'   => 'publish',
- 		));
+	 		 'post_title'    => $author,
+	 		 'post_content'  => $postHTML,
+	 		 'post_author'   => 'admin',
+	 		 'post_type'     => 'post',
+	 		 'post_status'   => 'publish',
+	 		));
  	}
  }
 ```
 
-Save & refresh the dashboard. **IMPORTANT** It’s possible you’ll get an error message. (“Though the bag may not inflate, oxygen is flowing to the mask”). Regardless, DO NOT refresh again, as EVERY refresh of the page will add the entire array of posts. Before you return to the page, you’ll need to comment out or remove the functions.php insert code we just added, re-save, and then refresh the dashboard. The posts should now be populated!
+Save & refresh the dashboard. **IMPORTANT** It’s possible you’ll get an error message. Regardless, DO NOT refresh again, as EVERY refresh of the page will add the entire array of posts. Before you return to the page, you’ll need to comment out or remove the functions.php insert code we just added, re-save, and then refresh the dashboard. The posts should now be populated!
+
+If any trouble persists, it's possible that some improper characters (', for example) still exist in the listing. Find & replace any offending characters). 
