@@ -80,9 +80,9 @@ Array
 })(console)
 ```
 
-3) To download, pass the name of the variable (ex: temp1) and the desired file name (ex: ‘elliston_JSON’) as arguments to console.save in the console:
+3) To download, pass the name of the variable (ex: temp1) and the desired file name (ex: ‘elliston’) as arguments to console.save in the console:
 
-	console.save(temp1, ‘elliston_JSON’)
+	console.save(temp1, ‘elliston’)
 
 
 ## Insert WP posts
@@ -98,7 +98,7 @@ At the bottom of the file, add the code:
 ```
 if ( true !== DOING_CRON && true !== DOING_AJAX ) {
 
-	$json = “PASTE (or direct to file for) JSON OBJECT SAVED FROM CONSOLE”;
+	$json = “PASTE (or direct to file for) ARRAY SAVED FROM CONSOLE”;
 
  	$arr = json_decode( $json, true );
 
@@ -123,4 +123,4 @@ if ( true !== DOING_CRON && true !== DOING_AJAX ) {
 
 Save & refresh the dashboard. **IMPORTANT** It’s possible you’ll get an error message. Regardless, DO NOT refresh again, as EVERY refresh of the page will add the entire array of posts. Before you return to the page, you’ll need to comment out or remove the functions.php insert code we just added, re-save, and then refresh the dashboard. The posts should now be populated!
 
-If any trouble persists, it's possible that some improper characters (', for example) still exist in the listing. Find & replace any offending characters). 
+If any trouble persists, it's possible that some improper characters (', for example) still exist in the listing. Find & replace any offending characters).
