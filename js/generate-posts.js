@@ -90,11 +90,10 @@ $('#display-listings').on('click', function(){
 		for (var i = 0; i < ellistonData.playlistID[playlistID].tracks.length; i++) {
 			var trackURL = ellistonData.playlistID[playlistID].tracks[i].mp3
 
-		  // Find track name with first capitalized letter
-			var t = trackNames[i].search(/[A-Z]/);
-
 			// Compensating for first track being overview title
+		  // Find track name by seraching for first capitalized letter
 			c = i + 1;
+			var t = trackNames[i].search(/[A-Z]/);
 			var trackName = trackNames[c].slice(t);
 
 			// Replace apostrophe with ASCII & bracket with parenthese
