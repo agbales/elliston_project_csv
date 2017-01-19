@@ -159,6 +159,7 @@ $('#display-listings').on('click', function(){
 	  }
 		return sections;
 	}
+
 	console.log(ellistonData);
-	console.log(split_into_sections(el));
+	console.log(el);
 });
